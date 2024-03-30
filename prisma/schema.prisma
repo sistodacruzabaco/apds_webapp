@@ -87,7 +87,7 @@ model Donation{
 
 model User {
   id        String @id @default(uuid())
-  username  String?
+  username  String
   email     String @unique
   hashed_password String
 
