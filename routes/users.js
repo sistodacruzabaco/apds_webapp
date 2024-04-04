@@ -19,13 +19,23 @@ router.get('/getUsers', async (req, res) => {
 
 // POST /user
 router.post('/addUser', async (req, res) => {
+  
   try {
 
-    const {username, email, hashed_password, role} = req.body;
+    const {email, hashed_password, role} = req.body;
     const hashedPassword = await bcrypt.hash(hashed_password,10);
 
+    const isEmailUnique = await prisma.user.findUnique({
+      where:{
+        email: email
+      }
+    });
+  
+    if(isEmailUnique){
+      return await res.status(400).json({message: "There is a user with this email"});
+    }
+
     const data = {
-      username: username,
       email: email,
       hashed_password: hashedPassword,
       role : role
@@ -44,27 +54,41 @@ router.post('/addUser', async (req, res) => {
 
 // PUT/user
 router.put('/updateUser/:id', async (req, res) => {
+  const {id} = req.params;
 
   try{
-    const {username, email, hashed_password, role} = req.body;
+    const {
+      // email, 
+      hashed_password, 
+      role
+    } = req.body;
+    
     const hashedPassword = await bcrypt.hash(hashed_password,10);
-    const {id} = req.params;
+
+    const isUserExists = await prisma.user.findUnique({
+      where:{
+        id
+      }
+    });
+  
+    if(!isUserExists){
+      return await res.status(400).json({message: "This user does no longer exists!"});
+    }
 
     const updatedUser = await prisma.user.update({
       where:{
-        id:id,
+        id
       },
 
       data : {
-        username: username,
-        email: email,
+        // email: email,
         hashed_password: hashedPassword,
         role: role,
       }
-
     })
     return await res.status(200).json(updatedUser);
-  }catch(erro){
+
+  }catch(error){
     return await res.status(500).json(error);
   }
 })
@@ -72,17 +96,26 @@ router.put('/updateUser/:id', async (req, res) => {
 
 // DELETE/user
 router.delete('/deleteUser/:id', async (req, res) => {
+  const {id} = req.params;
 
   try{
-    const {id} = req.params;
+    const isUserExists = await prisma.user.findUnique({
+      where:{
+        id
+      }
+    });
+  
+    if(!isUserExists){
+      return await res.status(400).json({message: "This user does no longer exists!"});
+    }
 
     const deletedUser = await prisma.user.delete({
       where:{
-        id:id,
+        id
       }
     })
-
-    return await res.status(200).json({success:true});
+    // return await res.status(200).json({success:true});
+    return await res.status(200).json({deletedUser});
 
   }catch(error){
     return await res.status(500).json(error);

@@ -19,6 +19,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model feed{
+  id String @id @default(uuid())
+  feed_name String
+  general_information String
+  kind String
+  sector String
+  imagem Bytes
+
+  @@map("feeds")
+  @@index([feed_name])
+}
+
 model Project {
   id String @id @default(uuid())
   project_name String @unique
@@ -49,7 +61,7 @@ model Project {
 
 model Partner{
   id String @id @default(uuid())
-  company_name String @unique
+  partner_name String @unique
 
   email String @unique
   nuit String @unique
@@ -63,7 +75,7 @@ model Partner{
   project Project @relation(fields: [project_id], references: [id])
 
   @@map("partners")
-  @@index([company_name])
+  @@index([partner_name])
 }
 
 model Donation{
@@ -87,7 +99,7 @@ model Donation{
 
 model User {
   id        String @id @default(uuid())
-  username  String
+  // username  String
   email     String @unique
   hashed_password String
 
@@ -98,7 +110,7 @@ model User {
   employee Employee?
 
   @@map("users")
-  @@index([username])
+  // @@index([username])
   @@index([email])
 }
 

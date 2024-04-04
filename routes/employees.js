@@ -35,30 +35,10 @@ router.post('/addEmployee', async (req, res) => {
         date_end
     }
 
-      const find_user = await prisma.user.findMany({
-        where: {
-            id:{
-                contains: user,
-            }
-        }
-      })
-    
-      const find_project = await prisma.project.findMany({
-        where:{
-            id:{
-                contains: project
-            }
-        }
-      })
-    
-    // //   console.log(req.body)
-    //   console.log(find_user)
-    //   console.log(find_project)
-
     const newEmployee = await prisma.employee.create({
         data: data,
-        user : find_user,
-        project: find_project
+        // user : find_user,
+        // project: find_project
     })
 
     return await res.status(200).json(newEmployee);

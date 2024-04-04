@@ -1,4 +1,17 @@
 -- CreateTable
+CREATE TABLE `feeds` (
+    `id` VARCHAR(191) NOT NULL,
+    `feed_name` VARCHAR(191) NOT NULL,
+    `general_information` VARCHAR(191) NOT NULL,
+    `kind` VARCHAR(191) NOT NULL,
+    `sector` VARCHAR(191) NOT NULL,
+    `imagem` LONGBLOB NOT NULL,
+
+    INDEX `feeds_feed_name_idx`(`feed_name`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `projects` (
     `id` VARCHAR(191) NOT NULL,
     `project_name` VARCHAR(191) NOT NULL,
@@ -22,7 +35,7 @@ CREATE TABLE `projects` (
 -- CreateTable
 CREATE TABLE `partners` (
     `id` VARCHAR(191) NOT NULL,
-    `company_name` VARCHAR(191) NOT NULL,
+    `partner_name` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `nuit` VARCHAR(191) NOT NULL,
     `address` VARCHAR(191) NULL,
@@ -31,10 +44,10 @@ CREATE TABLE `partners` (
     `updated_at` DATETIME(3) NOT NULL,
     `project_id` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `partners_company_name_key`(`company_name`),
+    UNIQUE INDEX `partners_partner_name_key`(`partner_name`),
     UNIQUE INDEX `partners_email_key`(`email`),
     UNIQUE INDEX `partners_nuit_key`(`nuit`),
-    INDEX `partners_company_name_idx`(`company_name`),
+    INDEX `partners_partner_name_idx`(`partner_name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -60,7 +73,6 @@ CREATE TABLE `donations` (
 -- CreateTable
 CREATE TABLE `users` (
     `id` VARCHAR(191) NOT NULL,
-    `username` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `hashed_password` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -68,7 +80,6 @@ CREATE TABLE `users` (
     `role` ENUM('ROOT', 'USER', 'ADMIN') NOT NULL DEFAULT 'ADMIN',
 
     UNIQUE INDEX `users_email_key`(`email`),
-    INDEX `users_username_idx`(`username`),
     INDEX `users_email_idx`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
