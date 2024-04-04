@@ -1,5 +1,7 @@
 import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage"
 import "./globals.css";
+import LoginForm from "./components/LoginForm";
 
 export const metadata = {
   title: "apds",
@@ -12,6 +14,9 @@ export default function RootLayout({ children }) {
       <body>
         <div>
           <Navbar/>
+        </div>
+        <div>
+          <HomePage/>
         </div>
       </body>
     </html>
