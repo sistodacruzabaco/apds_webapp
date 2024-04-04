@@ -21,13 +21,14 @@ router.get('/getUsers', async (req, res) => {
 router.post('/addUser', async (req, res) => {
   try {
 
-    const {username, email, hashed_password} = req.body;
+    const {username, email, hashed_password, role} = req.body;
     const hashedPassword = await bcrypt.hash(hashed_password,10);
 
     const data = {
       username: username,
       email: email,
       hashed_password: hashedPassword,
+      role : role
     }
 
     const newUser = await prisma.user.create({
@@ -45,7 +46,7 @@ router.post('/addUser', async (req, res) => {
 router.put('/updateUser/:id', async (req, res) => {
 
   try{
-    const {username, email, hashed_password} = req.body;
+    const {username, email, hashed_password, role} = req.body;
     const hashedPassword = await bcrypt.hash(hashed_password,10);
     const {id} = req.params;
 
@@ -58,6 +59,7 @@ router.put('/updateUser/:id', async (req, res) => {
         username: username,
         email: email,
         hashed_password: hashedPassword,
+        role: role,
       }
 
     })
