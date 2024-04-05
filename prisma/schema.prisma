@@ -118,7 +118,7 @@ model Employee{
   id String @id @default(uuid())
   firs_name String?
   last_name String?
-  gender Gender?
+  gender Gender @default(MASCULINO)
   address String?
   phone_number String? @unique  
   provenance String?
@@ -233,8 +233,8 @@ enum DonorStatus{
 }
 
 enum Gender{
-  Male
-  Female
-  Other
+  MASCULINO
+  FEMININO
+  OUTRO
 }
 // INSERT INTO Project (`id`, `project_name`, `budget`, `balance_available`, `local_implementation`, `date_start`, `date_end`, `project_code`, `account_number_project`, `updated_at`) VALUES ('jdfghfgbjfg1625243', 'BHA', '982644251', '76353', 'Mueda e Chiure', '2024.04.05', '2025.06.06', '6800', '87635343224', '2024.03.31');
