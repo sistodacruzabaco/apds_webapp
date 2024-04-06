@@ -55,7 +55,7 @@ router.post('/addProject', async (req, res) => {
     });
     
     if(isProjectNameUnique){
-      return await res.status(400).json({message: "This Project is already exists!"});
+      return await res.status(422).json({message: "Informe outro nome de projecto, este ja existe!"});
     }
 
     // console.log(project_name);
@@ -85,7 +85,7 @@ router.put('/updateProject/:id', async (req, res) => {
     });
   
     if(!isProjectExists){
-      return await res.status(400).json({message: "This Project does not exists!"});
+      return await res.status(404).json({message: "O projecto que pretende actualizar nao existe!"});
     }
 
     const updatedProject = await prisma.project.update({
@@ -113,7 +113,7 @@ router.delete('/deleteProject/:id', async (req, res) => {
     });
   
     if(!isProjectExists){
-      return await res.status(400).json({message: "This Project does not exists!"});
+      return await res.status(404).json({message: "O projecto que pretende apagar nao existe!"});
     }
 
     const deletedProject = await prisma.project.delete({
@@ -139,7 +139,7 @@ router.get('/getUniqueProjectByName/:project_name', async(req,res)=>{
   });
   
   if(!isProjectUniqueName){
-    return await res.status(400).json({message: "This Project does not exist!"});
+    return await res.status(404).json({message: "Projecto nao encontrado!"});
   }
   return await res.status(200).json(isProjectUniqueName);
 

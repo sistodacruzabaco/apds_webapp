@@ -20,50 +20,30 @@ router.get('/getEmployees', async (req, res) => {
 router.post('/addEmployee', async (req, res) => {
   try {
 
-    console.log(req.body);
+    // console.log(req.body);
 
     const {firs_name, last_name, gender, address, phone_number, provenance, 
-        date_birth, date_start, date_end, user, project} = req.body;
+        date_birth, date_start, date_end, civil_status, user_id, project_id} = req.body;
 
-    // const data = {
-    //     firs_name,
-    //     last_name,
-    //     gender,
-    //     address,
-    //     phone_number,  
-    //     provenance,
-    //     date_birth,
-    //     date_start,
-    //     date_end
-    // }
+    const data ={
+        firs_name,
+        last_name,
+        gender,
+        address,
+        phone_number,  
+        provenance,
+        date_birth,
+        date_start,
+        date_end,
+        civil_status, 
+        user_id, 
+        project_id
+    }
 
-    // const newEmployee = await prisma.employee.create({
-    //     data: {data, User: { connect: {id: userId}}, Project: { connect: {id: projectId}}
-    //     }
-    // })
+    console.log(data);
 
     const newEmployee = await prisma.employee.create({
-      data:{
-          firs_name,
-          last_name,
-          gender,
-          address,
-          phone_number,  
-          provenance,
-          date_birth,
-          date_start,
-          date_end, 
-          User: {
-            connect:{
-              user_id : user
-            }
-          },
-          Project: {
-            connect:{
-              project_id : project
-            }
-          }
-      }
+        data: data
     })
     return await res.status(200).json(newEmployee);
 
@@ -71,5 +51,34 @@ router.post('/addEmployee', async (req, res) => {
     return await res.status(500).json(error);
   }
 });
+
+
+// DELETE/employee
+router.delete('/deleteEmployee/:id', async (req, res) => {
+  const {id} = req.params;
+
+  try{
+    const isEmployeeExists = await prisma.employee.findUnique({
+      where:{
+        id
+      }
+    });
+  
+    if(!isEmployeeExists){
+      return await res.status(404).json({message: "O funcionario que pretende apagar nao existe!"});
+    }
+
+    const deletedEmployee = await prisma.employee.delete({
+      where:{
+        id
+      }
+    })
+    // return await res.status(200).json({success:true});
+    return await res.status(200).json({deletedEmployee});
+
+  }catch(error){
+    return await res.status(500).json(error);
+  }
+})
 
 module.exports = router;

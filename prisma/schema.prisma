@@ -27,6 +27,9 @@ model feed{
   sector String
   imagem Bytes
 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
   @@map("feeds")
   @@index([feed_name])
 }
@@ -237,3 +240,6 @@ enum Gender{
   FEMININO
   OUTRO
 }
+
+// INSERT INTO `apdsdb`.`employees` (`id`, `firs_name`, `last_name`, `gender`, `address`, `phone_number`, `provenance`, `date_birth`, `date_start`, `date_end`, `civil_status`, `user_id`, `project_id`) 
+// VALUES ('iouyuyuke37r', 'Sisto', 'Abaco', 'MASCULINO', 'Mueda', '84565435', 'Niassa', '1995-04-06T17:36:20.603Z', '2020-04-06T17:36:20.603Z', '2025-04-06T17:36:20.603Z', '', 'b99254a8-cebf-4934-a8d2-fe1044ff5ed2', '64162df3-3561-4944-842e-33d9ab00a97b')

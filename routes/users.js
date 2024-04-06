@@ -32,7 +32,7 @@ router.post('/addUser', async (req, res) => {
     });
   
     if(isEmailUnique){
-      return await res.status(400).json({message: "There is a user with this email"});
+      return await res.status(422).json({message: "Ja existe utilizador com esse USERNAME, insira outro por favor!"});
     }
 
     const data = {
@@ -72,7 +72,7 @@ router.put('/updateUser/:id', async (req, res) => {
     });
   
     if(!isUserExists){
-      return await res.status(400).json({message: "This user does no longer exists!"});
+      return await res.status(404).json({message: "O utilizador que pretende actualizar nao existe!"});
     }
 
     const updatedUser = await prisma.user.update({
@@ -106,7 +106,7 @@ router.delete('/deleteUser/:id', async (req, res) => {
     });
   
     if(!isUserExists){
-      return await res.status(400).json({message: "This user does no longer exists!"});
+      return await res.status(404).json({message: "O utilizador que pretende apagar nao existe!"});
     }
 
     const deletedUser = await prisma.user.delete({
