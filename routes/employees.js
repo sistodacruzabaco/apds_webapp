@@ -22,11 +22,11 @@ router.post('/addEmployee', async (req, res) => {
 
     // console.log(req.body);
 
-    const {firs_name, last_name, gender, address, phone_number, provenance, 
+    const {first_name, last_name, gender, address, phone_number, provenance, 
         date_birth, date_start, date_end, civil_status, user_id, project_id} = req.body;
 
     const data ={
-        firs_name,
+        first_name,
         last_name,
         gender,
         address,
