@@ -6,6 +6,8 @@ CREATE TABLE `feeds` (
     `kind` VARCHAR(191) NOT NULL,
     `sector` VARCHAR(191) NOT NULL,
     `imagem` LONGBLOB NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
 
     INDEX `feeds_feed_name_idx`(`feed_name`),
     PRIMARY KEY (`id`)
