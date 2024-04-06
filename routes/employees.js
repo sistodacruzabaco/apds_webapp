@@ -40,7 +40,7 @@ router.post('/addEmployee', async (req, res) => {
         project_id
     }
 
-    console.log(data);
+    // console.log(data);
 
     const newEmployee = await prisma.employee.create({
         data: data

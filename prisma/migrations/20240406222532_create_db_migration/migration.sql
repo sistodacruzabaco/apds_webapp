@@ -57,7 +57,7 @@ CREATE TABLE `partners` (
 CREATE TABLE `donations` (
     `id` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
-    `firs_name` VARCHAR(191) NULL,
+    `first_name` VARCHAR(191) NULL,
     `last_name` VARCHAR(191) NULL,
     `address` VARCHAR(191) NULL,
     `donor_status` ENUM('ANONIMO', 'VISIVEL') NOT NULL DEFAULT 'ANONIMO',
@@ -89,7 +89,7 @@ CREATE TABLE `users` (
 -- CreateTable
 CREATE TABLE `employees` (
     `id` VARCHAR(191) NOT NULL,
-    `firs_name` VARCHAR(191) NULL,
+    `first_name` VARCHAR(191) NULL,
     `last_name` VARCHAR(191) NULL,
     `gender` ENUM('MASCULINO', 'FEMININO', 'OUTRO') NOT NULL DEFAULT 'MASCULINO',
     `address` VARCHAR(191) NULL,
@@ -106,7 +106,7 @@ CREATE TABLE `employees` (
 
     UNIQUE INDEX `employees_phone_number_key`(`phone_number`),
     UNIQUE INDEX `employees_user_id_key`(`user_id`),
-    INDEX `employees_firs_name_idx`(`firs_name`),
+    INDEX `employees_first_name_idx`(`first_name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

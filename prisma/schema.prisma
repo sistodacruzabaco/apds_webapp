@@ -84,7 +84,7 @@ model Partner{
 model Donation{
   id String @id @default(uuid())
   email String @unique
-  firs_name String?
+  first_name String?
   last_name String?
   address String?
   donor_status DonorStatus @default(ANONIMO)
@@ -119,7 +119,7 @@ model User {
 
 model Employee{
   id String @id @default(uuid())
-  firs_name String?
+  first_name String?
   last_name String?
   gender Gender @default(MASCULINO)
   address String?
@@ -144,7 +144,7 @@ model Employee{
   opportunities Opportunity[]
 
   @@map("employees")
-  @@index([firs_name])
+  @@index([first_name])
 }
 
 model Activity{
@@ -240,6 +240,3 @@ enum Gender{
   FEMININO
   OUTRO
 }
-
-// INSERT INTO `apdsdb`.`employees` (`id`, `firs_name`, `last_name`, `gender`, `address`, `phone_number`, `provenance`, `date_birth`, `date_start`, `date_end`, `civil_status`, `user_id`, `project_id`) 
-// VALUES ('iouyuyuke37r', 'Sisto', 'Abaco', 'MASCULINO', 'Mueda', '84565435', 'Niassa', '1995-04-06T17:36:20.603Z', '2020-04-06T17:36:20.603Z', '2025-04-06T17:36:20.603Z', '', 'b99254a8-cebf-4934-a8d2-fe1044ff5ed2', '64162df3-3561-4944-842e-33d9ab00a97b')
