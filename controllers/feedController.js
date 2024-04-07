@@ -1,5 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../infrastructure/db');
 
 // GET /feeds
 module.exports.get_feeds = async (req, res) => {

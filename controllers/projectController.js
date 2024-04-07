@@ -1,5 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../infrastructure/db');
 
 // GET /projects
 module.exports.get_projects = async (req, res) => {

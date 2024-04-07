@@ -1,7 +1,5 @@
 const bcrypt = require('bcrypt');
-
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../infrastructure/db');
 
 module.exports.get_users = async (req, res) => {
 
