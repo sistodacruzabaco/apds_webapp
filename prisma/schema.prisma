@@ -240,3 +240,5 @@ enum Gender{
   FEMININO
   OUTRO
 }
+
+// INSERT INTO `apdsdb`.`feeds` (`id`, `feed_name`, `general_information`, `kind`, `sector`, `imagem`, `updated_at`) VALUES ('829867536hhjd', 'desenvolvimento sustentavel', 'visite aqui a nossa pagina', 'ksjgd', 'nutricao', ?, '2024-04-04');
