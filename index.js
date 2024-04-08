@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 // const { PrismaClient } = require('@prisma/client');
 // const { Prisma } = require('@prisma/client');
 // const prisma = new PrismaClient();
@@ -9,6 +10,10 @@ const EmployeesRouter = require('./routes/employees');
 
 const app = express();
 app.use(express.json()); // Parse JSON request bodies
+app.use(cors());
+// app.get('/cors', (req, res) => {
+//   res.set('Access-Control-Allow-Origin', '*');
+// });
 app.use('/api', usersRouter); // Use the /api prefix for your routes
 app.use('/api', projectsRouter); 
 app.use('/api', EmployeesRouter); 

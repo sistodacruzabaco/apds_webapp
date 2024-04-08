@@ -89,7 +89,7 @@ CREATE TABLE `employees` (
     `id` VARCHAR(191) NOT NULL,
     `firs_name` VARCHAR(191) NULL,
     `last_name` VARCHAR(191) NULL,
-    `gender` ENUM('Male', 'Female', 'Other') NULL,
+    `gender` ENUM('MASCULINO', 'FEMININO', 'OUTRO') NOT NULL DEFAULT 'MASCULINO',
     `address` VARCHAR(191) NULL,
     `phone_number` VARCHAR(191) NULL,
     `provenance` VARCHAR(191) NULL,
