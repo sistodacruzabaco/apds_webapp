@@ -1,4 +1,6 @@
 {
     "WillLuke.nextjs.addTypesOnSave": true,
-    "WillLuke.nextjs.hasPrompted": true
+    "WillLuke.nextjs.hasPrompted": true,
+    "workbench.preferredHighContrastColorTheme": "Default Dark+",
+    "workbench.preferredHighContrastLightColorTheme": "Default Dark+"
 }
