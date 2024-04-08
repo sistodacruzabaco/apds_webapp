@@ -1,9 +1,23 @@
-import React from "react";
+"use client"
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Card from "../components/Card";
+import { fetchAll } from "../services/feeds";
 import CardPartner from "../components/CardPartner";
 
 export default function Home() {
+  const [feeds, setFeeds] = useState([]);
+
+  useEffect(() => {
+    const fetchFeedsData = async () => {
+      const feedsData = await fetchAll();
+      setFeeds(feedssData);
+      setIsLoading(false)
+    };
+
+    fetchFeedsData();
+  }, []);
+
   return (
     <div className="justify-between space-y-32 max-w-max">
       <section className="flex flex-auto">
