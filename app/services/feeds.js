@@ -6,37 +6,37 @@ axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 export const fetchAll = async () => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/getProjects`);
+    const response = await axios.get(`http://localhost:8080/api/getFeeds`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching projects:", error);
+    console.error("Error fetching feeds:", error);
     throw error;
   }
 };
-export const create = async (project) => {
+export const create = async (feed) => {
   try {
-    const response = await axios.post(`http://localhost:8080/api/projects`, project);
+    const response = await axios.post(`http://localhost:8080/api/feeds`, feed);
     return response;
   } catch (error) {
-    console.error("Error creating project:", error);
+    console.error("Error creating feed:", error);
     throw error;
   }
 };
 export const update = async (id) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/projects`, project);
+    const response = await axios.put(`${API_BASE_URL}/feeds`, feed);
     return response;
   } catch (error) {
-    console.error("Error updating project:", error);
+    console.error("Error updating feed:", error);
     throw error;
   }
 };
 export const remove = async (id) => {
   try {
-    const response = await axios.delete(`${API_BASE_URL}/projects`, project);
+    const response = await axios.delete(`${API_BASE_URL}/feeds`, feed);
     return response;
   } catch (error) {
-    console.error("Error deleting project:", error);
+    console.error("Error deleting feed:", error);
     throw error;
   }
 };
