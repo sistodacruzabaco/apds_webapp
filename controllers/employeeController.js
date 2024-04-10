@@ -49,10 +49,20 @@ module.exports.update_employee = async (req, res) => {
   const { id } = req.params;
 
   try {
+    const isEmployeeExists = await prisma.employee.findUnique({
+      where: {
+        id
+      }
+    });
+
+    if (!isEmployeeExists) {
+      return await res.status(404).json({ message: "O funcionario que pretende actualizar nao existe!" });
+    }
+
     const { first_name, last_name, gender, address, phone_number, provenance,
       date_birth, date_start, date_end, civil_status, user_id, project_id } = req.body;
 
-      // console.log(req.body)
+    // console.log(req.body)
 
     const data = {
       first_name,
@@ -67,16 +77,6 @@ module.exports.update_employee = async (req, res) => {
       civil_status,
       user_id,
       project_id
-    }
-
-    const isEmployeeExists = await prisma.employee.findUnique({
-      where: {
-        id
-      }
-    });
-
-    if (!isEmployeeExists) {
-      return await res.status(404).json({ message: "O funcionario que pretende actualizar nao existe!" });
     }
 
     const updatedEmployee = await prisma.employee.update({
