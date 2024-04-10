@@ -1,48 +1,26 @@
 "use client";
 import React from "react";
-import Link from "next/link";
-import { fetchAll, create } from "./../../services/projects";
+import { fetchAll, create } from "./../../services/partners";
 import { useEffect, useState } from "react";
 import TableRow from "@/app/components/TableRow";
 import PageHeader from "@/app/components/PageHeader";
-//import Modal from "@/app/components/Modal";
 export default function page() {
-  const [projects, setProjects] = useState([]);
-  const [isLoading, setIsLoading, isModalOpen, setIsModalOpen] =
-    useState(false);
-
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
-
+  const [partners, setPartners] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    const fetchProjectsData = async () => {
-      const projectsData = await fetchAll();
-      setProjects(projectsData);
+    const fetchPartnersData = async () => {
+      const partnersData = await fetchAll();
+      setPartners(partnersData);
       setIsLoading(false);
     };
 
-    fetchProjectsData();
+    fetchPartnersData();
   }, []);
   return (
     <>
-      <div className="flex justify-between gap-2">
-        <PageHeader title="Lista de Projectos">
-          A lista de projecto da Associação
-        </PageHeader>
-        <div className="flex justify-center">
-          {/* <p className="flex">Pesquisar</p> */}
-          <Link
-            className="bg-green-800 text-white justify-center mx-6 py-1 px-2" href="projets/create"
-          >
-            Adicionar Projecto
-          </Link>
-        </div>
-      </div>
+      <PageHeader title="Lista de Parceiros" buttonMessage="Adicionar Parceiro">
+        A lista de todos os parceiros da Associação
+      </PageHeader>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -57,16 +35,16 @@ export default function page() {
                       Nome
                     </th>
                     <th scope="col" className=" px-6 py-4">
-                      Local
+                      E-mail
                     </th>
                     <th scope="col" className=" px-6 py-4">
-                      Valor disponivel
+                      Projecto
                     </th>
                     <th scope="col" className=" px-6 py-4">
-                      Moeda
+                      Endereco
                     </th>
                     <th scope="col" className=" px-6 py-4">
-                      Estado do projecto
+                      Nuit
                     </th>
                     <th scope="col" className=" px-6 py-4">
                       Acção
@@ -74,8 +52,8 @@ export default function page() {
                   </tr>
                 </thead>
                 <tbody>
-                  {projects.map((project, i) => {
-                    return <TableRow project={project} i={i + 1} />;
+                  {partners.map((partner, i) => {
+                    return <TableRow partner={partner} i={i + 1} />;
                   })}
                 </tbody>
               </table>

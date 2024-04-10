@@ -1,12 +1,10 @@
-"use cliente"
+"use cliente";
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { faRightFromBracket, faUserShield } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function () {
-  const [isClicked] = useState (false);
+  const [isClicked] = useState(false);
   return (
     <div className="container w-full flex py-6 justify-between items-center">
       <div className="h-auto ml-24">
@@ -26,17 +24,22 @@ export default function () {
             );
           })}
         </ul>
-        <div className="flex items-center gap-4 mx-14" >
-        <p className="flex items-center">
-          {/* <span className="flex mr-1 bg-zinc-900 text-green-800 w-8 h-8 items-center justify-between">
+        <div className="flex items-center gap-4 mx-14">
+          <p className="flex items-center">
+            {/* <span className="flex mr-1 bg-zinc-900 text-green-800 w-8 h-8 items-center justify-between">
           </span> */}
-          <Link href="/users" className="hover:text-green-800 text-white flex bg-green-800 rounded-full w-14 h-14 items-center p-1 transition-all hover:translate-y-[2px]">Admin</Link>
-        </p>
-        {/* <button className="flex items-center  hover:text-green-800 transition-all hover:translate-y-[2px] gap-1">
+            <Link
+              href="/users"
+              className="hover:text-green-800 text-white flex bg-green-800 rounded-full w-14 h-14 items-center p-1 transition-all hover:translate-y-[2px]"
+            >
+              Admin
+            </Link>
+          </p>
+          {/* <button className="flex items-center  hover:text-green-800 transition-all hover:translate-y-[2px] gap-1">
           <FontAwesomeIcon icon={faRightFromBracket} className="w-5"/>
           <span>Sair</span>
         </button> */}
-      </div>
+        </div>
       </nav>
     </div>
   );
@@ -46,12 +49,12 @@ const items = [
   {
     name: "Inicio",
     icon: "",
-    href: "#"
+    href: "#",
   },
   {
     name: "Actividades",
     icon: "",
-    href: "#",
+    href: "activitys",
   },
   {
     name: "Projectos",
@@ -61,11 +64,11 @@ const items = [
   {
     name: "Parceiros",
     icon: "",
-    href: "#",
+    href: "partners",
   },
   {
     name: "Sobre",
     icon: "",
-    href: "#",
+    href: "about",
   },
 ];
