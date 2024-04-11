@@ -32,7 +32,7 @@ export default function page() {
                       #
                     </th>
                     <th scope="col" className=" px-6 py-4">
-                      Nome
+                      Nome do Parceiro
                     </th>
                     <th scope="col" className=" px-6 py-4">
                       E-mail

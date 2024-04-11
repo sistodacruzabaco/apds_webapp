@@ -117,12 +117,12 @@ CREATE TABLE `activities` (
     `local_activity` VARCHAR(191) NULL,
     `purpose_activity` VARCHAR(191) NULL,
     `activity_information` VARCHAR(191) NULL,
-    `imagem` LONGBLOB NOT NULL,
+    `imagem` LONGBLOB NULL,
     `responsible` VARCHAR(191) NOT NULL,
     `participants` VARCHAR(191) NULL,
     `date_start` DATETIME(3) NULL,
     `date_end` DATETIME(3) NULL,
-    `activity_status` ENUM('EM_PROGRESSO', 'TERMINADA', 'NAO_INICIADA') NOT NULL DEFAULT 'TERMINADA',
+    `activity_status` ENUM('EM_PROGRESSO', 'FINALIZADA', 'NAO_INICIADA') NOT NULL DEFAULT 'FINALIZADA',
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
     `project_id` VARCHAR(191) NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE `activities` (
 -- CreateTable
 CREATE TABLE `opportunities` (
     `id` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NOT NULL,
+    `description_opportunity` VARCHAR(191) NOT NULL,
     `details` VARCHAR(191) NULL,
     `date_start` DATETIME(3) NULL,
     `date_end` DATETIME(3) NULL,
@@ -146,7 +146,7 @@ CREATE TABLE `opportunities` (
     `project_id` VARCHAR(191) NOT NULL,
     `employee_id` VARCHAR(191) NOT NULL,
 
-    INDEX `opportunities_description_idx`(`description`),
+    INDEX `opportunities_description_opportunity_idx`(`description_opportunity`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

@@ -43,7 +43,7 @@ module.exports.add_user = async (req, res) => {
         return await res.status(201).json(newUser);
 
     } catch (error) {
-        console.log("user nao criado!");
+        // console.log("user nao criado!");
         return await res.status(500).json(error);
     }
 };

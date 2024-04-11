@@ -65,7 +65,6 @@ model Project {
 model Partner{
   id String @id @default(uuid())
   partner_name String @unique
-
   email String @unique
   nuit String @unique
   address String?
@@ -153,14 +152,14 @@ model Activity{
   local_activity String?
   purpose_activity String?
   activity_information String?
-  imagem Bytes
+  imagem Bytes?
   responsible String
   participants String?
   
   date_start DateTime?  
   date_end DateTime?
   
-  activity_status ActivityStatus @default(TERMINADA)
+  activity_status ActivityStatus @default(FINALIZADA)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -177,7 +176,7 @@ model Activity{
 
 model Opportunity{
   id String @id @default(uuid())
-  description String
+  description_opportunity String
   details String?
   date_start DateTime?
   date_end DateTime?
@@ -195,12 +194,12 @@ model Opportunity{
   employee Employee @relation(fields: [employee_id], references: [id])
   
   @@map("opportunities")
-  @@index([description])
+  @@index([description_opportunity])
 }
 
 enum ActivityStatus{
   EM_PROGRESSO
-  TERMINADA
+  FINALIZADA
   NAO_INICIADA
 }
 
